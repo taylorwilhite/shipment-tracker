@@ -1,5 +1,10 @@
 const express = require('express');
 const getNewShipments = require('./modules/getNewShipments');
+const addToShipmentList = require('./modules/addToShipmentList');
+const getShipmentList = require('./modules/getShipmentList');
+const trackShipments = require('./modules/trackShipments');
+const updateList = require('./modules/updateList');
+const getUnshippedOrders = require('./modules/getUnshippedOrders');
 
 const app = express();
 require('dotenv').config();
