@@ -5,9 +5,9 @@ const app = express();
 require('dotenv').config();
 
 // Overall Function
-const getUnshipped = () => {
+const getUnshipped = async () => {
   // Check new shipments
-  const newShipments = getNewShipments();
+  const newShipments = await getNewShipments();
   // Submit new shipments to list
   addToShipmentList(newShipments);
   // Pull entire list to be checked
@@ -21,7 +21,12 @@ const getUnshipped = () => {
 
 // Every 24 hours run the function
 // getUnshipped();
-getNewShipments();
+async function testAsync(func) {
+  const output = await func();
+  console.log(output);
+}
+
+testAsync(getNewShipments);
 
 app.listen(process.env.PORT || 8008, () => {
   console.log('app is running!');
