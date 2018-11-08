@@ -1,4 +1,5 @@
 const express = require('express');
+const getNewShipments = require('./modules/getNewShipments');
 
 const app = express();
 require('dotenv').config();
@@ -19,7 +20,8 @@ const getUnshipped = () => {
 };
 
 // Every 24 hours run the function
-getUnshipped();
+// getUnshipped();
+getNewShipments();
 
 app.listen(process.env.PORT || 8008, () => {
   console.log('app is running!');
