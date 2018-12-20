@@ -1,6 +1,6 @@
 const db = require('../db');
 
-const orderText = 'INSERT INTO order(order, date, carrier, tracking_number, cancelled, moving) VALUES($1, $2, $3, $4, $5, $6)';
+const orderText = 'INSERT INTO orders(order_number, date, carrier, tracking_number, cancelled, moving) VALUES($1, $2, $3, $4, $5, $6)';
 // For later when we add the item checking to the script
 // const itemText = 'INSERT INTO item(sku, name, upc, in_stock, order, quantity) VALUES($1, $2, $3, $4, $5, $6)';
 

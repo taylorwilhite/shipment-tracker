@@ -26,12 +26,13 @@ const getUnshipped = async () => {
 
 // Every 24 hours run the function
 // getUnshipped();
-async function testAsync(func) {
-  const output = await func();
+async function testAsync(func, func2) {
+  const data = await func();
+  const output = func2(data);
   console.log(output);
 }
 
-testAsync(getNewShipments);
+testAsync(getNewShipments, addToShipmentList);
 
 app.listen(process.env.PORT || 8008, () => {
   console.log('app is running!');

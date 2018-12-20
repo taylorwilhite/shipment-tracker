@@ -8,19 +8,16 @@ const yesterday = new Date(new Date().getTime() - (24 * 60 * 60 * 1000));
 const fromDate = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()} ${yesterday.getHours()}:${yesterday.getMinutes()}:${yesterday.getSeconds()}`;
 
 const getNewShipments = async () => {
-  const newShipments = await request(
+  let newShipments = [];
+  await request(
     {
       url: `https://ssapi.shipstation.com/shipments?createDateStart=${fromDate}`, // temporarily doing last 24 hours to test
       headers: { Authorization: `Basic ${authString}` },
       json: true,
-    }, (err, response, body) => {
-      if (err) {
-        return err;
-      }
-      console.log(response.statusCode);
-      return body.shipments;
     },
-  );
+  )
+    .then(body => newShipments = [...newShipments, ...body.shipments]) // eslint-disable-line
+    .catch(err => console.log(err));
   return newShipments;
 };
 
